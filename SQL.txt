@@ -1,0 +1,37 @@
+/**** getCategoryList ******/
+SELECT id, category,Summary.total 
+                FROM categories JOIN (SELECT COUNT(*) AS total, 
+                                  category_id
+                                  FROM pages
+                                  GROUP BY category_id) AS Summary
+                WHERE categories.id = Summary.category_id
+                ORDER BY category
+
+
+/***** getPopularList ****/"
+SELECT COUNT(*)AS num, page_id, pages.title, 
+                        CONCAT(LEFT(pages.description,30),'...') AS description
+                 FROM history JOIN pages ON pages.id = history.page_id
+                 WHERE type = 'page'
+                 GROUP BY page_id
+                 ORDER BY 1 DESC
+                 LIMIT 6
+
+
+/***** getArticleList *****/
+SELECT id, title, description FROM pages ORDER BY title
+
+
+
+/***** getArticle *****/
+SELECT title, description, content FROM pages WHERE id=:id
+
+
+
+/***** getArticlesbyCategory *****/
+SELECT category, pages.id, title,description 
+FROM pages JOIN categories 
+ON category_id = categories.id
+WHERE category_id=:id
+ORDER BY date_created DESC
+

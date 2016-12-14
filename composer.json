@@ -1,0 +1,13 @@
+{
+    "name": "vendor/in-class-o-o-p-demos",
+    "description": "Description of project InClassOOPDemos.",
+    "authors": [
+        {
+            "name": "davidcowan",
+            "email": "david-a-cowan@hotmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "v5.2.16"
+    }
+}
